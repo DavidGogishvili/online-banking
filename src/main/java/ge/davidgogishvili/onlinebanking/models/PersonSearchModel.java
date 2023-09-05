@@ -1,4 +1,13 @@
 package ge.davidgogishvili.onlinebanking.models;
 
-public class PersonSearchModel {
+public record PersonSearchModel
+        (
+                String firstName,
+                String lastName,
+                String personalNumber,
+                String iban
+        )
+
+
+{
 }

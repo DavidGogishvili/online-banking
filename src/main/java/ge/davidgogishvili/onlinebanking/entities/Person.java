@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+//თითოეული ცხრილისთვის კეთდება 1 რეპოზიტორი და თითოეული რეპოზიტორისთვის კეთდება 1 ენტიტი თუ იმ ცხრილთან მუშაობა გვჭირდება (ჩანაწერის შექმნა, ძებნა, წაშლა ან რამე სხვა ქმედება)
 
 @Getter
 @Setter
@@ -17,7 +18,6 @@ public class Person {
 
     @Id
     private Integer id;
-
 
     @Column(name = "personal_number")
     private String personalNumber;
