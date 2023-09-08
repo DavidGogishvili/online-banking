@@ -28,7 +28,6 @@ public class Account {
     private String name;
     private Double amount;
     private String iban;
-//    private Boolean blocked;
-//    private Timestamp created_at;
+
 
 }

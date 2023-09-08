@@ -32,7 +32,7 @@ public class Person {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @JsonIgnore // რომელ ველსაც ვუწერ - იმ ველს არ გამოიტანს, ასევე შეგვიძლია ველს დავუწეროთ და იმუშავებს
+    @JsonIgnore // რომელ ველსაც ვუწერ - იმ ველს არ გამოიტანს
     @OneToMany
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private List<Account> accounts;

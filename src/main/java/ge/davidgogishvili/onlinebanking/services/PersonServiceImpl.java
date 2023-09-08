@@ -55,14 +55,18 @@ public class PersonServiceImpl implements ge.davidgogishvili.onlinebanking.servi
                 predicates.add(criteriaBuilder.like(root.get("lastName"), "%" + params.lastName() + "%"));
             }
 
+            // აქ დავწერეთ კოდი, რომელიც პერსონებს აბამს ექაუნთებთან და გვაძლევს საშუალებას რომ ექაუნთის და პერსონების რაღაცეებით ერთდროულად მოვძებნოთ
             if (StringUtils.isNotEmpty(params.iban())) {
-                Root<Account> accountRoot = query.from(Account.class);
-                Subquery<Account> sub = criteriaBuilder.createQuery().subquery(Account.class);
-                sub.select(accountRoot.get("personId"));
+                Subquery<Integer> sub = query.subquery(Integer.class);
+                Root<Account> accountRoot = sub.from(Account.class);
+                sub.select(accountRoot.get("id"));
+                sub.where(
+                        criteriaBuilder.like(accountRoot.get("iban"), "%" + params.iban() + "%"));
+
                 predicates.add(
                         criteriaBuilder.in(root.get("id"))
                                 .value(
-                                        sub.where(criteriaBuilder.like(accountRoot.get("iban"), "%" + params.iban() + "%"))
+                                        sub
                                 ));
             }
 
@@ -71,7 +75,7 @@ public class PersonServiceImpl implements ge.davidgogishvili.onlinebanking.servi
 
 
 
-            
+
            }, Pageable.ofSize(10));
 
         return ans.stream().toList();
