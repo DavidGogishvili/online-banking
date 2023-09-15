@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface AccountRepository extends JpaRepository <Account, Integer> {
 
-    List<Account> findAllByPersonId(Integer personId);
+    List<Account> findAllByPersonId(
+
+            Integer personId
+
+    );
 
     
 }

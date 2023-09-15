@@ -29,5 +29,10 @@ public class Account {
     private Double amount;
     private String iban;
 
+    private Boolean blocked;
+
+    @Column(name = "created_by")
+    private Integer createdBy;
+
 
 }
