@@ -27,6 +27,7 @@ public class TransactionServiceImpl implements TransactionService {
         if (data.amount() == null || data.amount() < 0.1){
             throw new RuntimeException("Wrong amount");
         }
+
         transaction.setAmount(data.amount());
         transaction.setComment(data.comment());
         transactionRepository.save(transaction);

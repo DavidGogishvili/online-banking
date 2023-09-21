@@ -1,15 +1,13 @@
 package ge.davidgogishvili.onlinebanking.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -21,6 +19,7 @@ public class UserDomain implements UserDetails {
 
     @Id
     private Integer id;
+//    private Integer UserId;
 
     @Column(name = "email")
     private String username;
@@ -30,11 +29,18 @@ public class UserDomain implements UserDetails {
 
     private Boolean active;
 
+    @Transient  // რომ არ ეგონოს ბაზის ველი, მაგიტომ ვუწერ
+    private List <RoleDomain> roles;
+
+
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+    public Collection<? extends GrantedAuthority> getAuthorities() {  // აქ უნდა ჩავსეტოთ როლები
+        if (roles == null) {
+            return new ArrayList<>();
+        }
+            return roles;
     }
 
     @Override

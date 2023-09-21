@@ -19,7 +19,7 @@ import lombok.Setter;
 @Entity
 @Table (schema = "public", name = "transactions")
 @SequenceGenerator(name = "transactions_id_seq_generator", sequenceName = "transactions_id_seq", allocationSize = 1)
-public class TransactionDomain {
+public class TransactionDomain extends BaseEntity_logs{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactions_id_seq_generator")

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 
 @Table(schema = "public", name ="accounts")
-public class Account {
+public class Account extends BaseEntity_logs {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="account_seq_generator")
@@ -31,8 +31,6 @@ public class Account {
 
     private Boolean blocked;
 
-    @Column(name = "created_by")
-    private Integer createdBy;
 
 
 }

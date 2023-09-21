@@ -2,11 +2,11 @@ package ge.davidgogishvili.onlinebanking.services;
 
 import ge.davidgogishvili.onlinebanking.entities.Account;
 import ge.davidgogishvili.onlinebanking.entities.Person;
-import ge.davidgogishvili.onlinebanking.entities.UserDomain;
 import ge.davidgogishvili.onlinebanking.models.AccountCreateModel;
 import ge.davidgogishvili.onlinebanking.models.PersonSearchModel;
 import ge.davidgogishvili.onlinebanking.repositories.AccountRepository;
 import ge.davidgogishvili.onlinebanking.repositories.PersonRepository;
+import ge.davidgogishvili.onlinebanking.security.UserManager;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,10 +30,6 @@ public class PersonServiceImpl implements ge.davidgogishvili.onlinebanking.servi
 
     @Override
     public List<Person> search(PersonSearchModel params) {
-
-
-
-
 
 
 //              return personRepository.findPersons("%" + firstName + "%", lastName + "%", "%" + personalNumber + "%");
@@ -110,9 +105,7 @@ public class PersonServiceImpl implements ge.davidgogishvili.onlinebanking.servi
         account.setName(accountCreateModel.name());
         account.setIban(accountCreateModel.iban());
         account.setAmount(0.0);
-        var userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDomain user = (UserDomain) userDetails;
-        account.setCreatedBy(user.getId());
+
         accountRepository.save(account);
         return account;
 

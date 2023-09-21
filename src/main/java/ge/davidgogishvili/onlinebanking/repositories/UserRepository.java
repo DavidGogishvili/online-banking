@@ -11,3 +11,6 @@ public interface UserRepository extends JpaRepository<UserDomain, Integer> {
     Optional<UserDomain> findAllByUsername(String username);
 
 }
+
+
+
